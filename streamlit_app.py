@@ -1,9 +1,22 @@
 import streamlit as st
 import openai
+# Uncomment the following lines to enable the API key input form
+with st.sidebar:
+    api_key_form = st.form(key="api_key_form")
+    openai_api_key = api_key_form.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+    api_key_form_submitted = api_key_form.form_submit_button("Submit")
+
+    if api_key_form_submitted:
+        if True:                              
+            openai.api_key = openai_api_key
+            st.success("Your OpenAI API key was saved successfully!")
+        else:
+            st.info("Your OpenAI API key is invalid, please check to see if it is correctly inputted or contact OpenAI")
+
 
 def generate_flower_recommendation(occasion, recipient_name, favorite_color, relationship):
     # Customize the prompt based on your requirements
-    prompt = f"Recommend a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and make some 5 notes about this {occasion} and tell why I choose this flower for {recipient_name} who is my {relationship} ."
+    prompt = f"Recommend a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and make 5 notes about this {occasion} and tell why I choose this flower for {recipient_name} who is my {relationship} ."
 
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
@@ -23,17 +36,6 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
 st.markdown("<h2 style = 'font-size: 1.8rem'>🌼Flower For Your Important Person🌼</h2>",unsafe_allow_html=True)
 
 # Uncomment the following lines to enable the API key input form
-with st.sidebar:
-    api_key_form = st.form(key="api_key_form")
-    openai_api_key = api_key_form.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
-    api_key_form_submitted = api_key_form.form_submit_button("Submit")
-
-    if api_key_form_submitted:
-        if True:                              
-            openai.api_key = openai_api_key
-            st.success("Your OpenAI API key was saved successfully!")
-        else:
-            st.info("Your OpenAI API key is invalid, please check to see if it is correctly inputted or contact OpenAI")
 
 # User input
 occasion = st.text_input("Occasion:")
