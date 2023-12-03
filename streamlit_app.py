@@ -17,18 +17,16 @@ if "text" not in st.session_state:
 
 if "n_requests" not in st.session_state:
     st.session_state.n_requests = 0
-    
+
 with st.sidebar:
     api_key_form = st.form(key="api_key_form")
     openai_api_key = api_key_form.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
     api_key_form_submitted = api_key_form.form_submit_button("Submit")
 
     if api_key_form_submitted:
-        if True:                              
-            openai.api_key = openai_api_key
-            st.success("Your OpenAI API key was saved successfully!")
-        else:
-            st.info("Your OpenAI API key is invalid, please check to see if it is correctly inputted or contact OpenAI")
+        st.session_state.openai_api_key = openai_api_key
+        openai.api_key = st.session_state.openai_api_key
+        st.success("Your OpenAI API key was saved successfully!")
 
 #user_api_key = st.sidebar.text_input("OpenAI API key", type="password")
 #client = openai.OpenAI(api_key=user_api_key)
