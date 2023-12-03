@@ -16,7 +16,7 @@ with st.sidebar:
 
 def generate_flower_recommendation(occasion, recipient_name, favorite_color, relationship):
     # Customize the prompt based on your requirements
-    prompt = f"Recommend a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and make 5 notes about this {occasion} and tell why I choose this flower for {recipient_name} who is my {relationship} ."
+    prompt = f"Recommend a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and make 5 notes telling {recipient_name} why I chose this flower for this {occasion}."
 
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
