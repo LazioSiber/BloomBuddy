@@ -20,7 +20,7 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
     return response.choices[0].message.content
 
 #st.title("🌼Flower For Your Important Person🌼")
-st.markdown("<h2 style = 'font-size: calc(15px + 0.390625vw)'>🌼Flower For Your Important Person🌼</h2>",unsafe_allow_html=True)
+st.markdown("<h2 style = 'font-size: 1.8rem'>🌼Flower For Your Important Person🌼</h2>",unsafe_allow_html=True)
 
 # Uncomment the following lines to enable the API key input form
 with st.sidebar:
