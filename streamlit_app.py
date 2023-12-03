@@ -6,7 +6,7 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
     prompt = f"Recommend a flower for {occasion} for {recipient_name} with a favorite color of {favorite_color} and a {relationship}."
 
     # Call OpenAI API for recommendation
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         temperature=0.7,
         top_p=0.7,
