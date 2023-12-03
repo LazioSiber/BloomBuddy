@@ -16,8 +16,9 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
             {"role": "user", "content": f"You will help users find the best flowers from {prompt}."},
         ]
     )
-
-    return response.choices[0]
+    x=response.choices[0]
+    x=x['text'].split('\n')
+    return x
 
 st.title("Flower Recommendation App")
 
