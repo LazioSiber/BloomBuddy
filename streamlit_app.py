@@ -3,7 +3,7 @@ import openai
 
 def generate_flower_recommendation(occasion, recipient_name, favorite_color, relationship):
     # Customize the prompt based on your requirements
-    prompt = f"Recommend a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and make some 5 short notes for {recipient_name} who is my {relationship} why I choose this flower."
+    prompt = f"Recommend a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and make some 5 notes about this {occasion} and tell why I choose this flower for {recipient_name} who is my {relationship} ."
 
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
@@ -13,7 +13,7 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
         max_tokens=450,
         messages=[
             {"role": "system", "content": "You are a flowers recommendation bot. You will help users find the best flowers for their important person."},
-            {"role": "user", "content": f"You will help users find the best flowers from the context:{prompt}.and make notes why you choose this flower."},
+            {"role": "user", "content": f"You will help users find the best flowers and make notes from the context:{prompt}."},
         ]
     )
     
