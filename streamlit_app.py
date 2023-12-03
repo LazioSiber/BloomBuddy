@@ -1,7 +1,7 @@
 import streamlit as st
 import openai
 # Uncomment the following lines to enable the API key input form
-with st.sidebar:
+'''with st.sidebar:
     api_key_form = st.form(key="api_key_form")
     openai_api_key = api_key_form.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
     api_key_form_submitted = api_key_form.form_submit_button("Submit")
@@ -11,12 +11,15 @@ with st.sidebar:
             openai.api_key = openai_api_key
             st.success("Your OpenAI API key was saved successfully!")
         else:
-            st.info("Your OpenAI API key is invalid, please check to see if it is correctly inputted or contact OpenAI")
+            st.info("Your OpenAI API key is invalid, please check to see if it is correctly inputted or contact OpenAI")'''
+
+user_api_key = st.sidebar.text_input("OpenAI API key", type="password")
+client = openai.OpenAI(api_key=user_api_key)
 
 
 def generate_flower_recommendation(occasion, recipient_name, favorite_color, relationship):
     # Customize the prompt based on your requirements
-    prompt = f"Recommend a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and make 5 notes telling {recipient_name} why I chose this flower for this {occasion}."
+    prompt = f"Recommend me a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and make 5 notes to tell {recipient_name} why I chose this flower for this {occasion}."
 
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
