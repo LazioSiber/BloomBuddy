@@ -15,6 +15,7 @@ with st.sidebar:
 
 #user_api_key = st.sidebar.text_input("OpenAI API key", type="password")
 #client = openai.OpenAI(api_key=user_api_key)
+st.set_page_config(page_title="BloomBuddy", page_icon="🌼")
 
 
 def generate_flower_recommendation(occasion, recipient_name, favorite_color, relationship):
