@@ -13,7 +13,7 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
         max_tokens=450,
         messages=[
             {"role": "system", "content": "You are a flowers recommendation bot. You will help users find the best flowers for their important person."},
-            {"role": "user", "content": f"You will help users find the best flowers from {prompt}."},
+            {"role": "user", "content": f"please recommend a flower for {occasion} for {recipient_name} with a favorite color of {favorite_color} and a {relationship}."},
         ]
     )
     
