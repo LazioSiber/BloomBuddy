@@ -1,23 +1,3 @@
-'''import openai
-import streamlit as st
-
-# Get the API key from the sidebar called OpenAI API key
-user_api_key = st.sidebar.text_input("OpenAI API key", type="password")
-
-client = openai.OpenAI(api_key=user_api_key)
-prompt = st.text_area("Tell me about your important person", height=200)
-openai.chat.completions.create(
-                model="gpt-3.5-turbo",
-                temperature=0.6,
-                top_p = 0.6,
-                max_tokens = 450,
-                messages=[
-                    {"role": "system", "content": f"You are flowers reccomendation bot. You will help users to find the best flowers for their important person."},
-                    {"role": "user", "content": f"You will help users to find the best flowers from {prompt}."},
-                    ]
-                )
-user_input = st.text_area("Enter about gender, age, relationship of your important person and what a special occasion", height=100)
-            '''
 # Import from 3rd party libraries
 import streamlit as st
 import openai
@@ -28,8 +8,8 @@ api_key_form_submitted = False
 
 
 # Define functions
-
-def analyse_text(text_input: str , strictness: str):
+'''
+def analyse_text(text_input: str):
     if not text_input:
         st.session_state.text_error = "Please enter your text"
         return
@@ -41,23 +21,20 @@ def analyse_text(text_input: str , strictness: str):
             st.session_state.text = (
                 openai.chat.completions.create(
                 model="gpt-3.5-turbo",
-                temperature=0.4,
-                top_p = 0.8,
+                temperature=0.6,
+                top_p = 0.6,
                 max_tokens = 450,
                 messages=[
-                    {"role": "system", "content": f"You are a grammar checker bot that outputs in formatted html. Check the following text for grammar mistakes in the context of {strictness} Correct the errors and provide a list of (Fairly simple) explanations."},
-                    {"role": "user", "content": f"Please fix this, highlighting any changes in green and, more importantly, showing the original with mistakes in red: {prompt}"},
+                    {"role": "system", "content": f"You are flowers reccomendation bot. You will help users to find the best flowers for their important person."},
+                    {"role": "user", "content": f"You will help users to find the best flowers from {prompt}."},
                     ]
                 )
             )
 
-
-
 # Render Streamlit page
-st.set_page_config(page_title="GrammarBuddy", page_icon="🤖")
+st.set_page_config(page_title="BloomBuddy", page_icon="🌼")
 st.session_state.text_error = None
 st.session_state.text = None
-
 
 text_spinner_placeholder = st.spinner()
 
@@ -107,3 +84,41 @@ if st.session_state.text:
     # st.write(f":red[{text_input}]")
     # st.text_area(label="Corrected", value=f"{output.choices[0].message.content}", height=400)
     image_spinner_placeholder = st.empty()
+'''
+
+def flower_recommendation():
+    st.title("Find the Best Flowers for Your Special Person")
+
+    # Get user input for the recipient's preferences
+    recipient_name = st.text_input("Enter the recipient's name:")
+    occasion = st.text_input("What is the occasion? (e.g., birthday, anniversary):")
+    color_preference = st.text_input("Any color preferences?:")
+
+    st.write("\n")
+
+    # Display personalized greeting
+    st.subheader(f"Hello, {recipient_name}!")
+
+    # Display flower recommendations based on user input
+    st.write("For the occasion of", occasion + ",", "we recommend the following flowers:")
+
+    if "anniversary" in occasion.lower():
+        st.write("1. Red Roses - Symbolizing love and passion")
+        st.write("2. Orchids - Representing beauty and strength")
+
+    elif "birthday" in occasion.lower():
+        st.write("1. Lilies - Elegant and fragrant")
+        st.write("2. Tulips - Perfect for celebrating new beginnings")
+
+    else:
+        st.write("1. Daisies - Cheerful and innocent")
+        st.write("2. Mixed Color Roses - Adding vibrancy to the moment")
+
+    # Display additional suggestions based on color preference
+    if color_preference:
+        st.write(f"\nIf {color_preference} is the preferred color, consider:")
+        st.write("1. Flowers with", color_preference.capitalize(), "petals")
+        st.write("2. A bouquet that incorporates", color_preference.capitalize(), "tones")
+
+if __name__ == "__main__":
+    flower_recommendation()
