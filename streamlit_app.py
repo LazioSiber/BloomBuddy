@@ -3,7 +3,7 @@ import openai
 
 def generate_flower_recommendation(occasion, recipient_name, favorite_color, relationship):
     # Customize the prompt based on your requirements
-    prompt = f"Recommend a flower that are suitable for {occasion},{recipient_name} and {favorite_color} for my {relationship}. and make some notes for my{relationship} why I choose this flower."
+    prompt = f"Recommend a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and make some 5 short notes for {recipient_name} who is my {relationship} why I choose this flower."
 
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
