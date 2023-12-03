@@ -29,7 +29,7 @@ api_key_form_submitted = False
 
 # Define functions
 
-def analyse_text(text_input: str):
+def analyse_text(text_input: str , strictness: str):
     if not text_input:
         st.session_state.text_error = "Please enter your text"
         return
