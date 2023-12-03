@@ -59,7 +59,7 @@ st.markdown("<h2 style = 'font-size: 1.8rem'>🌼Flower For Your Important Perso
 occasion = st.text_input("Occasion:")
 recipient_name = st.text_input("Recipient's Name:")
 favorite_color = st.text_input("Recipient's Favorite Color:")
-relationship = st.text_input("Your Relationship to the Recipient:")
+relationship = st.text_input("Recipient's Relationship to you:")
 
 # Generate recommendation
 if st.button("Generate Recommendation"):
@@ -70,3 +70,10 @@ if st.button("Generate Recommendation"):
         st.success(f"Recommended Flower: {recommendation}")
     else:
         st.warning("Please fill in all fields.")
+
+#explanation_text = """
+#<h3 style='text-align: center; color: green;'> FallacyBot </h3>
+#<h6 style='text-align: center'> Checking for <span style='color:red'>fallacies</span> in your text since 2023!</h6>
+#<p> For your convenience, a default example is provided. If you don't input any text, the bot will use the example text. </p>
+#"""
+#st.markdown(explanation_text, unsafe_allow_html=True)
