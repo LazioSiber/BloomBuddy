@@ -16,4 +16,5 @@ openai.chat.completions.create(
                     {"role": "user", "content": f"You will help users to find the best flowers from {prompt}."},
                     ]
                 )
+user_input = st.text_area("Enter about gender, age, relationship of your important person and what a special occasion", height=100)
             
