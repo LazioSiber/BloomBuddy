@@ -17,7 +17,7 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
         ]
     )
 
-    return response.choices[0].text.strip()
+    return response.choices[0].strip()
 
 st.title("Flower Recommendation App")
 
