@@ -16,9 +16,10 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
             {"role": "user", "content": f"You will help users find the best flowers from {prompt}."},
         ]
     )
-    x=str(response.choices)
-    x=x.text.split("Recommended Flower: ")[1]
+    x=response.choices[0]
+    x=x.text.strip()
     return x
+    return response.choices[0].text.strip()
 
 st.title("Flower Recommendation App")
 
