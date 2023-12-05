@@ -88,7 +88,7 @@ if st.button("Generate Recommendation"):
         # Create a dataframe for better formatting
         df = pd.DataFrame({"Recommendation": lines})
 
-        # Display the dataframe as a single-column table
-        st.table(df)
+        # Display the dataframe as a table without the index column
+        st.table(df.set_index('Recommendation'))
     else:
         st.warning("Please fill in all fields.")
