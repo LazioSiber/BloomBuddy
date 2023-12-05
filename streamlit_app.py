@@ -60,7 +60,7 @@ occasion = st.text_input("Occasion:")
 recipient_name = st.text_input("Recipient's Name:")
 favorite_color = st.text_input("Recipient's Favorite Color:")
 relationship = st.text_input("Recipient's Relationship to you:")
-'''
+
 # Generate recommendation
 if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
@@ -70,34 +70,11 @@ if st.button("Generate Recommendation"):
         st.success(f"{recommendation}")
     else:
         st.warning("Please fill in all fields.")
-        '''
+        
 
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>“I must have flowers, always, and always.”</i></h2></div>", unsafe_allow_html=True)
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1rem;'><i>— Claude Monet —</i></h2></div>", unsafe_allow_html=True)
 
-if st.button("Generate Recommendation"):
-    if occasion and recipient_name and favorite_color and relationship:
-        recommendation = generate_flower_recommendation(
-            occasion, recipient_name, favorite_color, relationship
-        )
-        
-        # Split the response into recommended flowers and notes
-        flowers_notes = recommendation.split('\n\n')
-        
-        # Create Pandas DataFrame
-        data = {'Flower': [], 'Notes': []}
-        for i in range(0, len(flowers_notes), 2):
-            data['Flower'].append(flowers_notes[i])
-            data['Notes'].append(flowers_notes[i + 1])
-        
-        df = pd.DataFrame(data)
-        
-        # Display the tables
-        for index, row in df.iterrows():
-            st.markdown(f"<h3>{row['Flower']}</h3>", unsafe_allow_html=True)
-            st.table(row['Notes'])
-    else:
-        st.warning("Please fill in all fields.")
 
