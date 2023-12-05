@@ -88,7 +88,7 @@ if st.button("Generate Recommendation"):
 
         # Create a DataFrame with the recommended flower and notes
         data = {
-            "Recommended Flower": [recommended_flower],
+            "Recommended Flower": [recommended_flower] * len(notes),
             "Notes": notes,
         }
 
