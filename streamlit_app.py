@@ -71,9 +71,9 @@ if st.button("Generate Recommendation"):
     else:
         st.warning("Please fill in all fields.")
 
-#explanation_text = """
-#<h3 style='text-align: center; color: green;'> FallacyBot </h3>
-#<h6 style='text-align: center'> Checking for <span style='color:red'>fallacies</span> in your text since 2023!</h6>
-#<p> For your convenience, a default example is provided. If you don't input any text, the bot will use the example text. </p>
-#"""
-#st.markdown(explanation_text, unsafe_allow_html=True)
+explanation_text = """
+<h3 style='text-align: center; color: green;'> FallacyBot </h3>
+<h6 style='text-align: center'> Checking for <span style='color:red'>fallacies</span> in your text since 2023!</h6>
+<p> For your convenience, a default example is provided. If you don't input any text, the bot will use the example text. </p>
+"""
+st.markdown(explanation_text, unsafe_allow_html=True)
