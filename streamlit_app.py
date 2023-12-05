@@ -66,7 +66,7 @@ if st.button("Generate Recommendation"):
         recommendation = generate_flower_recommendation(
             occasion, recipient_name, favorite_color, relationship
         )
-        st.success(f"Recommended Flower: {recommendation}")
+        st.success(f"{recommendation}")
     else:
         st.warning("Please fill in all fields.")
 
