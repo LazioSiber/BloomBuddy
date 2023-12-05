@@ -101,7 +101,6 @@ if st.button("Generate Recommendation"):
     else:
         st.warning("Please fill in all fields.")'''
 
-# Generate recommendation
 if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation = generate_flower_recommendation(
@@ -125,6 +124,6 @@ if st.button("Generate Recommendation"):
         # Display the tables
         for index, row in df.iterrows():
             st.markdown(f"<h3>{row['Flower']}</h3>", unsafe_allow_html=True)
-            st.table(pd.DataFrame({'Notes': [row['Notes']]}).style.hide_index())
+            st.table(pd.DataFrame({'Notes': [row['Notes']]}).set_index('Notes', drop=True))
     else:
         st.warning("Please fill in all fields.")
