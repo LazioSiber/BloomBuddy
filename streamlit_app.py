@@ -79,4 +79,4 @@ if st.button("Generate Recommendation"):
 explanation_text = """
 <h3 style='text-align: center; color: green;'> Flower makes our world beautiful</h3>
 """
-#st.markdown(explanation_text, unsafe_allow_html=True)
+st.markdown(explanation_text, unsafe_allow_html=True)
