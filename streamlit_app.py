@@ -98,8 +98,13 @@ if st.button("Generate Recommendation"):
 
         # Style the DataFrame for a beautiful output
         st.markdown("<h3 style='text-align: left; color: #336699;'>Recommended Flower and Note</h3>", unsafe_allow_html=True)
-        st.dataframe(df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
+        
+        # Set custom CSS styles for the table to make it bigger
+        st.table(df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
             'selector': 'th',
+            'props': [('text-align', 'left')]
+        }, {
+            'selector': 'td',
             'props': [('text-align', 'left')]
         }]))
 
