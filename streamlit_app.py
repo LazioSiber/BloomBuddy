@@ -60,7 +60,7 @@ recipient_name = st.text_input("Recipient's Name:")
 favorite_color = st.text_input("Recipient's Favorite Color:")
 relationship = st.text_input("Recipient's Relationship to you:")
 
-if st.button("Generate Recommendation"):
+'''if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation = generate_flower_recommendation(
             occasion, recipient_name, favorite_color, relationship
@@ -78,7 +78,7 @@ if st.button("Generate Recommendation"):
         # Display the HTML table
         st.write(html_table, unsafe_allow_html=True)
     else:
-        st.warning("Please fill in all fields.")
+        st.warning("Please fill in all fields.")'''
 
 
 # Center the title
@@ -86,4 +86,30 @@ st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1rem;'><i>— Claude Monet —</i></h2></div>", unsafe_allow_html=True)
 
+if st.button("Generate Recommendation"):
+    if occasion and recipient_name and favorite_color and relationship:
+        recommendation = generate_flower_recommendation(
+            occasion, recipient_name, favorite_color, relationship
+        )
+        
+        # Split the recommendation into lines
+        lines = recommendation.split('\n')
+
+        # Create a dataframe for better formatting
+        df = pd.DataFrame({"Recommendation": lines})
+
+        # Convert the dataframe to HTML and apply custom styling for a green table
+        styled_html_table = (
+            df.style
+            .set_table_styles([
+                {"selector": "table", "props": [("border-collapse", "collapse"), ("width", "100%"), ("border", "1px solid #4CAF50")]},
+                {"selector": "th, td", "props": [("padding", "8px"), ("text-align", "left"), ("border-bottom", "1px solid #4CAF50")]},
+                {"selector": "thead", "props": [("background-color", "#4CAF50"), ("color", "white")]}
+            ])
+        )
+
+        # Display the styled HTML table using st.markdown
+        st.markdown(styled_html_table, unsafe_allow_html=True)
+    else:
+        st.warning("Please fill in all fields.")
 
