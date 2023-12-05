@@ -95,7 +95,16 @@ if st.button("Generate Recommendation"):
         }
 
         df = pd.DataFrame(data)
-        st.dataframe(df)
+
+        # Style the DataFrame for a beautiful output
+        st.markdown("<h3 style='text-align: left; color: #336699;'>Recommended Flower and Note</h3>", unsafe_allow_html=True)
+        st.dataframe(df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
+            'selector': 'th',
+            'props': [('text-align', 'left')]
+        }]))
+
+    else:
+        st.warning("Please fill in all fields.")
 
     else:
         st.warning("Please fill in all fields.")
