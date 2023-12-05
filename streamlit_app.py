@@ -48,7 +48,19 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
         ]
     )
     
-    return response.choices[0].message.content
+    #return response.choices[0].message.content
+    recommendations = response.choices[0].message.content.split("\n")
+    
+    # Create a DataFrame from the recommendations
+    data = {"Flower": [], "Notes": []}
+    for i in range(0, len(recommendations), 4):
+        flower = recommendations[i]
+        notes = recommendations[i + 1:i + 4]
+        data["Flower"].append(flower)
+        data["Notes"].append("\n".join(notes))
+    
+    df = pd.DataFrame(data)
+    return df
 
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 2rem;'>🌼Flower For Your Important Person🌼</h2></div>", unsafe_allow_html=True)
@@ -63,15 +75,23 @@ favorite_color = st.text_input("Recipient's Favorite Color:")
 relationship = st.text_input("Recipient's Relationship to you:")
 
 # Generate recommendation
-if st.button("Generate Recommendation"):
+'''if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation = generate_flower_recommendation(
             occasion, recipient_name, favorite_color, relationship
         )
         st.success(f"{recommendation}")
     else:
-        st.warning("Please fill in all fields.")
+        st.warning("Please fill in all fields.")'''
         
+if st.button("Generate Recommendation"):
+    if occasion and recipient_name and favorite_color and relationship:
+        recommendation_df = generate_flower_recommendation(
+            occasion, recipient_name, favorite_color, relationship
+        )
+        st.table(recommendation_df)
+    else:
+        st.warning("Please fill in all fields.")
 
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>“I must have flowers, always, and always.”</i></h2></div>", unsafe_allow_html=True)
