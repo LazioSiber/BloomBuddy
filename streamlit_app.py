@@ -34,7 +34,7 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
     # Customize the prompt based on your requirements
     #prompt1 = f"Recommend me a flower name that are suitable for {occasion} and {favorite_color} and {relationship} for {recipient_name} who is my {relationship}."
     #prompt2 = f'write 5 different notes for me to tell {recipient_name} who is my {relationship} why I chose this flower for this {occasion}.'
-    prompt = f'Recommend me 3 flowers name that are suitable for {occasion} and {favorite_color} and {relationship} for {recipient_name} who is my {relationship}.and for each flowers write 3 different notes for me to tell {recipient_name} who is my {relationship} why I chose this flower for this {occasion}.'
+    prompt = f'Give me 3 recommended flowers that are suitable for {occasion} and {favorite_color} and {relationship} for {recipient_name} who is my {relationship}.and for each flowers write 3 different notes for me to tell {recipient_name} who is my {relationship} why I chose this flower for this {occasion}.'
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
