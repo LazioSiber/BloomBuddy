@@ -51,7 +51,8 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
     
     # Create a single-column DataFrame
     data = {"Recommendation": []}
-    for i in range(0, len(recommendations), 4):
+    i = 0
+    while i < len(recommendations):
         try:
             flower = recommendations[i]
             note1 = recommendations[i + 1]
@@ -59,10 +60,14 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
             note3 = recommendations[i + 3]
         except IndexError:
             # Handle IndexError gracefully
-            continue
+            break
         
         data["Recommendation"].append(flower)
-        data["Recommendation"].extend([note1, note2, note3, ""])  # Add an empty row to separate recommendations
+        data["Recommendation"].append(note1)
+        data["Recommendation"].append(note2)
+        data["Recommendation"].append(note3)
+        data["Recommendation"].append("")  # Add an empty row to separate recommendations
+        i += 4
 
     df = pd.DataFrame(data)
     return df
