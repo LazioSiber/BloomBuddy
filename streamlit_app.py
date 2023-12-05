@@ -86,16 +86,29 @@ if st.button("Generate Recommendation"):
         recommended_flower = recommendation[len(flower_start):flower_end].strip()
         notes = recommendation[flower_end + len(note_start):].strip().split("\n")
 
-        # Create a DataFrame with the recommended flower and notes
-        data = {
-            "Recommended Flower": [recommended_flower] * len(notes),
+        # Create a DataFrame with the recommended flower
+        flower_data = {
+            "Recommended Flower": [recommended_flower],
+        }
+
+        flower_df = pd.DataFrame(flower_data)
+
+        # Create a DataFrame with the notes
+        notes_data = {
             "Notes": notes,
         }
 
-        df = pd.DataFrame(data)
+        notes_df = pd.DataFrame(notes_data)
 
-        # Display the recommended flower and notes in a DataFrame
-        st.dataframe(df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
+        # Display the recommended flower and notes in separate DataFrames
+        st.subheader("Recommended Flower:")
+        st.dataframe(flower_df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
+            'selector': 'th',
+            'props': [('text-align', 'left')]
+        }]))
+
+        st.subheader("Notes:")
+        st.dataframe(notes_df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
             'selector': 'th',
             'props': [('text-align', 'left')]
         }]))
