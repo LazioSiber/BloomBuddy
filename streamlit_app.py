@@ -79,23 +79,22 @@ if st.button("Generate Recommendation"):
             occasion, recipient_name, favorite_color, relationship
         )
 
-        # Display the recommendation in a DataFrame
-        data = {
-            "Occasion": [occasion],
-            "Recipient's Name": [recipient_name],
-            "Recipient's Favorite Color": [favorite_color],
-            "Recipient's Relationship": [relationship],
-            "Recommended Flower": [recommendation],
-        }
+        # Extracting the flower and note from the recommendation
+        flower_start = "Recommended Flower:"
+        note_start = "Notes:"
+        flower_end = recommendation.find(note_start)
 
-        df = pd.DataFrame(data)
-        st.dataframe(df)
+        recommended_flower = recommendation[len(flower_start):flower_end].strip()
+        note = recommendation[flower_end + len(note_start):].strip()
 
-        # Optionally, you can save the DataFrame to a CSV file
-        # df.to_csv("flower_recommendation.csv", index=False)
+        # Display the recommended flower and note
+        st.success(f"Recommended Flower: {recommended_flower}")
+        st.info(f"Note: {note}")
 
     else:
         st.warning("Please fill in all fields.")
+
+    
 #explanation_text = """
 #<h3 style='text-align: center; color: green;'> FallacyBot </h3>
 #<h6 style='text-align: center'> Checking for <span style='color:red'>fallacies</span> in your text since 2023!</h6>
