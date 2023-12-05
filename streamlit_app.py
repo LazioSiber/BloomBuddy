@@ -79,5 +79,5 @@ if st.button("Generate Recommendation"):
 explanation_text = """
 <h3 style='text-align: center; color: green;'> 🌟Flower makes our world beautiful🌟 </h3>
 """
-st.markdown("<h3 style = 'font-size: 1.8rem'>“I must have flowers, always, and always.”</h3>", unsafe_allow_html=True)
-st.markdown("<h3 style = 'font-size: 1.5rem'>— Claude Monet</h3>", unsafe_allow_html=True)
+st.markdown("<i><h3 style = 'font-size: 1.8rem'>“I must have flowers, always, and always.”</h3>", unsafe_allow_html=True)
+st.markdown("<i><h3 style = 'font-size: 1.25rem'>— Claude Monet</h3>", unsafe_allow_html=True)
