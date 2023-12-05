@@ -66,31 +66,35 @@ relationship = st.text_input("Recipient's Relationship to you:")
         recommendation = generate_flower_recommendation(
             occasion, recipient_name, favorite_color, relationship
         )
+        st.success(f"Recommended Flower: {recommendation}")
         st.success(f"{recommendation}")
     else:
         st.warning("Please fill in all fields.")'''
 
+# Generate recommendation
 if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation = generate_flower_recommendation(
             occasion, recipient_name, favorite_color, relationship
         )
 
-        # Extracting the flower and note from the recommendation
+        # Extracting the flower and notes from the recommendation
         flower_start = "Recommended Flower:"
         note_start = "Notes:"
         flower_end = recommendation.find(note_start)
 
         recommended_flower = recommendation[len(flower_start):flower_end].strip()
+        notes = recommendation[flower_end + len(note_start):].strip().split("\n")
 
-        # Create a DataFrame with the recommended flower
+        # Create a DataFrame with the recommended flower and notes
         data = {
             "Recommended Flower": [recommended_flower],
+            "Notes": notes,
         }
 
         df = pd.DataFrame(data)
 
-        # Display the recommended flower in a DataFrame
+        # Display the recommended flower and notes in a DataFrame
         st.dataframe(df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
             'selector': 'th',
             'props': [('text-align', 'left')]
