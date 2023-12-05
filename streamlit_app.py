@@ -70,54 +70,33 @@ if st.button("Generate Recommendation"):
         st.success(f"{recommendation}")
     else:
         st.warning("Please fill in all fields.")
-
-'''            
-# Generate recommendation
-if st.button("Generate Recommendation"):
-    if occasion and recipient_name and favorite_color and relationship:
-        recommendation = generate_flower_recommendation(
-            occasion, recipient_name, favorite_color, relationship
-        )
-
-        # Extracting the flower and notes from the recommendation
-        flower_start = "Recommended Flower:"
-        note_start = "Notes:"
-        flower_end = recommendation.find(note_start)
-
-        recommended_flower = recommendation[len(flower_start):flower_end].strip()
-        notes = recommendation[flower_end + len(note_start):].strip().split("\n")
-
-        # Create a DataFrame with the recommended flower
-        flower_data = {
-            "Recommended Flower": [recommended_flower],
-        }
-
-        flower_df = pd.DataFrame(flower_data)
-
-        # Create a DataFrame with the notes
-        notes_data = {
-            "Notes": notes,
-        }
-
-        notes_df = pd.DataFrame(notes_data)
-
-        # Display the recommended flower and notes in separate stylish tables
-        st.subheader("Recommended Flower:")
-        st.table(flower_df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
-            'selector': 'th',
-            'props': [('text-align', 'left')]
-        }]))
-
-        st.subheader("Notes:")
-        st.table(notes_df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
-            'selector': 'th',
-            'props': [('text-align', 'left')]
-        }]))
-
-    else:
-        st.warning("Please fill in all fields.")
+        '''
 
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>“I must have flowers, always, and always.”</i></h2></div>", unsafe_allow_html=True)
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1rem;'><i>— Claude Monet —</i></h2></div>", unsafe_allow_html=True)
+
+if st.button("Generate Recommendation"):
+    if occasion and recipient_name and favorite_color and relationship:
+        recommendation = generate_flower_recommendation(
+            occasion, recipient_name, favorite_color, relationship
+        )
+        
+        # Split the response into recommended flowers and notes
+        flowers_notes = recommendation.split('\n\n')
+        
+        # Create Pandas DataFrame
+        data = {'Flower': [], 'Notes': []}
+        for i in range(0, len(flowers_notes), 2):
+            data['Flower'].append(flowers_notes[i])
+            data['Notes'].append(flowers_notes[i + 1])
+        
+        df = pd.DataFrame(data)
+        
+        # Display the tables
+        for index, row in df.iterrows():
+            st.markdown(f"<h3>{row['Flower']}</h3>", unsafe_allow_html=True)
+            st.table(row['Notes'])
+    else:
+        st.warning("Please fill in all fields.")
