@@ -85,13 +85,10 @@ if st.button("Generate Recommendation"):
         # Split the recommendation into lines
         lines = recommendation.split('\n')
 
-        # Print the lines for debugging
-        st.text(lines)
-
         # Create a dataframe for better formatting
         df = pd.DataFrame({"Recommendation": lines})
 
-        # Display the dataframe as a table without the index column
-        st.table(df.set_index('Recommendation'))
+        # Display the dataframe as a single-column table
+        st.table(df)
     else:
         st.warning("Please fill in all fields.")
