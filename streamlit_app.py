@@ -53,9 +53,9 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
     data = {"Recommendation": []}
     for i in range(0, len(recommendations), 4):
         flower = recommendations[i]
-        note1 = recommendations[i + 0]
-        note2 = recommendations[i + 1]
-        note3 = recommendations[i + 2]
+        note1 = recommendations[i + 1]
+        note2 = recommendations[i + 2]
+        note3 = recommendations[i + 3]
         
         data["Recommendation"].append(flower)
         data["Recommendation"].extend([note1, note2, note3, ""])  # Add an empty row to separate recommendations
