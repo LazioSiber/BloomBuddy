@@ -37,8 +37,8 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
-        temperature=0.7,
-        top_p=0.7,
+        temperature=0.8,
+        top_p=0.2,
         max_tokens=450,
         messages=[
             {"role": "system", "content": f"You are a flowers recommendation bot. You will help users find the best flowers for their important person from the context{occasion} and {favorite_color}"},
