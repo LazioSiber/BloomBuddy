@@ -100,15 +100,15 @@ if st.button("Generate Recommendation"):
 
         notes_df = pd.DataFrame(notes_data)
 
-        # Display the recommended flower and notes in separate DataFrames
+        # Display the recommended flower and notes in separate stylish tables
         st.subheader("Recommended Flower:")
-        st.dataframe(flower_df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
+        st.table(flower_df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
             'selector': 'th',
             'props': [('text-align', 'left')]
         }]))
 
         st.subheader("Notes:")
-        st.dataframe(notes_df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
+        st.table(notes_df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
             'selector': 'th',
             'props': [('text-align', 'left')]
         }]))
