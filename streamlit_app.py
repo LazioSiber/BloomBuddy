@@ -51,13 +51,13 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
     #return response.choices[0].message.content
     recommendations = response.choices[0].message.content.split("\n")
     
-    # Create a DataFrame from the recommendations
-    data = {"Flower": [], "Notes": []}
+    # Create a single-column DataFrame
+    data = {"Recommendation": []}
     for i in range(0, len(recommendations), 4):
         flower = recommendations[i]
         notes = recommendations[i + 1:i + 4]
-        data["Flower"].append(flower)
-        data["Notes"].append("\n".join(notes))
+        recommendation_text = f"Flower: {flower}\nNotes:\n" + "\n".join(notes)
+        data["Recommendation"].append(recommendation_text)
     
     df = pd.DataFrame(data)
     return df
