@@ -48,6 +48,7 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
         ]
     )
     recommendations = response.choices[0].message.content.split("\n")
+    
     # Create a single-column DataFrame
     data = {"Recommendation": []}
     for i in range(0, len(recommendations), 4):
@@ -60,7 +61,8 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
         data["Recommendation"].append(note1)
         data["Recommendation"].append(note2)
         data["Recommendation"].append(note3)
-    
+        data["Recommendation"].append("")  # Add an empty row to separate recommendations
+
     df = pd.DataFrame(data)
     return df
 # Center the title
