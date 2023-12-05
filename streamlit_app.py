@@ -60,7 +60,7 @@ occasion = st.text_input("Occasion:")
 recipient_name = st.text_input("Recipient's Name:")
 favorite_color = st.text_input("Recipient's Favorite Color:")
 relationship = st.text_input("Recipient's Relationship to you:")
-
+'''
 # Generate recommendation
 if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
@@ -116,7 +116,7 @@ if st.button("Generate Recommendation"):
 
     else:
         st.warning("Please fill in all fields.")
-'''
+
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>“I must have flowers, always, and always.”</i></h2></div>", unsafe_allow_html=True)
 # Center the title
