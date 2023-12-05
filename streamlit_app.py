@@ -91,6 +91,7 @@ if st.button("Generate Recommendation"):
         df = pd.DataFrame({"Recommendation": lines})
 
         # Display the dataframe without the index column
-        st.table(df.style.hide_index())
+        st.table(df.set_table_styles([{'selector': 'thead', 'props': 'display: none;'}]))
     else:
         st.warning("Please fill in all fields.")
+
