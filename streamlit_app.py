@@ -81,5 +81,9 @@ if st.button("Generate Recommendation"):
 explanation_text = """
 <h3 style='text-align: center; color: green;'> 🌟Flower makes our world beautiful🌟 </h3>
 """
-st.markdown("<p style='text-align: center;'><h2 style = 'font-size: 1.8rem'><i>“I must have flowers, always, and always.”</i></h2>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: right;'><h2 style = 'font-size: 1.25rem'><i>— Claude Monet</i></h2>", unsafe_allow_html=True)
+#st.markdown("<p style='text-align: center;'><h2 style = 'font-size: 1.8rem'><i>“I must have flowers, always, and always.”</i></h2>", unsafe_allow_html=True)
+#st.markdown("<p style='text-align: right;'><h2 style = 'font-size: 1.25rem'><i>— Claude Monet</i></h2>", unsafe_allow_html=True)
+# Center the title
+st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>“I must have flowers, always, and always.”</i></h2></div>", unsafe_allow_html=True)
+# Center the title
+st.markdown("<div style='text-align: right;'><h2 style='font-size: 1rem;'><i>— Claude Monet</i></h2></div>", unsafe_allow_html=True)
