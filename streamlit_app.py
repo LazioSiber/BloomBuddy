@@ -52,7 +52,7 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
     return response.choices[0].message.content
 
 #st.title("🌼Flower For Your Important Person🌼")
-st.markdown("<h2 style = 'font-size: 1.8rem'>🌼Flower For Your Important Person🌼</h2>",unsafe_allow_html=True)
+st.markdown("<h2 style = 'font-size: 2rem'>🌼Flower For Your Important Person🌼</h2>",unsafe_allow_html=True)
 
 # Uncomment the following lines to enable the API key input form
 
@@ -77,6 +77,7 @@ if st.button("Generate Recommendation"):
 
     
 explanation_text = """
-<h3 style='text-align: center; color: green;'> Flower makes our world beautiful</h3>
+<h3 style='text-align: center; color: green;'> 🌟Flower makes our world beautiful🌟 </h3>
 """
-st.markdown(explanation_text, unsafe_allow_html=True)
+st.markdown("<h3 style = 'font-size: 1.8rem'>“I must have flowers, always, and always.”</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style = 'font-size: 1.5rem'>— Claude Monet</h3>", unsafe_allow_html=True)
