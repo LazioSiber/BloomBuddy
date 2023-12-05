@@ -106,8 +106,7 @@ if st.button("Generate Recommendation"):
     else:
         st.warning("Please fill in all fields.")
 
-    else:
-        st.warning("Please fill in all fields.")
+  
 
     
 #explanation_text = """
