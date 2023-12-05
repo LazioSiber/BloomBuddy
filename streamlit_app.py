@@ -58,10 +58,7 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
         note3 = recommendations[i + 2]
         
         data["Recommendation"].append(flower)
-        data["Recommendation"].append(note1)
-        data["Recommendation"].append(note2)
-        data["Recommendation"].append(note3)
-        data["Recommendation"].append("")  # Add an empty row to separate recommendations
+        data["Recommendation"].extend([note1, note2, note3, ""])  # Add an empty row to separate recommendations
 
     df = pd.DataFrame(data)
     return df
