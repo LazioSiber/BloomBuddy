@@ -1,5 +1,7 @@
 import streamlit as st
 import openai
+import pandas as pd
+
 # Uncomment the following lines to enable the API key input form
 # Initialize
 st.cache_data.clear()
@@ -62,18 +64,41 @@ favorite_color = st.text_input("Recipient's Favorite Color:")
 relationship = st.text_input("Recipient's Relationship to you:")
 
 # Generate recommendation
-if st.button("Generate Recommendation"):
+'''if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation = generate_flower_recommendation(
             occasion, recipient_name, favorite_color, relationship
         )
         st.success(f"Recommended Flower: {recommendation}")
     else:
-        st.warning("Please fill in all fields.")
+        st.warning("Please fill in all fields.")'''
 
-explanation_text = """
-<h3 style='text-align: center; color: green;'> FallacyBot </h3>
-<h6 style='text-align: center'> Checking for <span style='color:red'>fallacies</span> in your text since 2023!</h6>
-<p> For your convenience, a default example is provided. If you don't input any text, the bot will use the example text. </p>
-"""
-st.markdown(explanation_text, unsafe_allow_html=True)
+if st.button("Generate Recommendation"):
+    if occasion and recipient_name and favorite_color and relationship:
+        recommendation = generate_flower_recommendation(
+            occasion, recipient_name, favorite_color, relationship
+        )
+
+        # Display the recommendation in a DataFrame
+        data = {
+            "Occasion": [occasion],
+            "Recipient's Name": [recipient_name],
+            "Recipient's Favorite Color": [favorite_color],
+            "Recipient's Relationship": [relationship],
+            "Recommended Flower": [recommendation],
+        }
+
+        df = pd.DataFrame(data)
+        st.dataframe(df)
+
+        # Optionally, you can save the DataFrame to a CSV file
+        # df.to_csv("flower_recommendation.csv", index=False)
+
+    else:
+        st.warning("Please fill in all fields.")
+#explanation_text = """
+#<h3 style='text-align: center; color: green;'> FallacyBot </h3>
+#<h6 style='text-align: center'> Checking for <span style='color:red'>fallacies</span> in your text since 2023!</h6>
+#<p> For your convenience, a default example is provided. If you don't input any text, the bot will use the example text. </p>
+#"""
+#st.markdown(explanation_text, unsafe_allow_html=True)
