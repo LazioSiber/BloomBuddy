@@ -90,8 +90,11 @@ if st.button("Generate Recommendation"):
         # Create a dataframe for better formatting
         df = pd.DataFrame({"Recommendation": lines})
 
-        # Display the dataframe without the index column
-        st.table(df.set_table_styles([{'selector': 'thead', 'props': 'display: none;'}]))
+        # Convert the dataframe to markdown and remove the index column
+        markdown_table = df.to_markdown(index=False)
+
+        # Display the markdown table
+        st.markdown(markdown_table)
     else:
         st.warning("Please fill in all fields.")
 
