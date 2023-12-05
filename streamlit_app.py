@@ -59,7 +59,7 @@ occasion = st.text_input("Occasion:")
 recipient_name = st.text_input("Recipient's Name:")
 favorite_color = st.text_input("Recipient's Favorite Color:")
 relationship = st.text_input("Recipient's Relationship to you:")
-'''
+
 if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation = generate_flower_recommendation(
@@ -79,38 +79,11 @@ if st.button("Generate Recommendation"):
         st.write(html_table, unsafe_allow_html=True)
     else:
         st.warning("Please fill in all fields.")
-'''
+
 
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>“I must have flowers, always, and always.”</i></h2></div>", unsafe_allow_html=True)
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1rem;'><i>— Claude Monet —</i></h2></div>", unsafe_allow_html=True)
 
-
-if st.button("Generate Recommendation"):
-    if occasion and recipient_name and favorite_color and relationship:
-        recommendation = generate_flower_recommendation(
-            occasion, recipient_name, favorite_color, relationship
-        )
-        
-        # Split the recommendation into lines
-        lines = recommendation.split('\n')
-
-        # Create a dataframe for better formatting
-        df = pd.DataFrame({"Recommendation": lines})
-
-        # Convert the dataframe to HTML with enhanced styling
-        styled_html_table = (
-            df.style
-            .set_table_styles([
-                {"selector": "thead", "props": [("background-color", "#f2f2f2"), ("color", "black")]}
-            ])
-            .bar(subset=["Recommendation"], color='#7E7E7E')
-            .set_properties(**{'text-align': 'left'})
-        )
-
-        # Display the styled HTML table using st.markdown
-        st.markdown(styled_html_table, unsafe_allow_html=True)
-    else:
-        st.warning("Please fill in all fields.")
 
