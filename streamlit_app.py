@@ -54,9 +54,9 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
     data = {"Recommendation": []}
     for i in range(0, len(recommendations), 4):
         flower = recommendations[i]
-        note1 = recommendations[i + 1]
-        note2 = recommendations[i + 2]
-        note3 = recommendations[i + 3]
+        note1 = recommendations[i + 0]
+        note2 = recommendations[i + 1]
+        note3 = recommendations[i + 2]
         
         recommendation_text = f"Flower: {flower}\nNote 1: {note1}\nNote 2: {note2}\nNote 3: {note3}"
         data["Recommendation"].append(recommendation_text)
@@ -86,7 +86,7 @@ relationship = st.text_input("Recipient's Relationship to you:")
     else:
         st.warning("Please fill in all fields.")'''
         
-if st.button("Generate Recommendation"):
+if st.button("In bocca al lupo!"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation_df = generate_flower_recommendation(
             occasion, recipient_name, favorite_color, relationship
