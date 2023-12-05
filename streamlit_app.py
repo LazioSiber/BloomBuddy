@@ -99,10 +99,20 @@ if st.button("Generate Recommendation"):
         # Create a dataframe for better formatting
         df = pd.DataFrame({"Recommendation": lines})
 
-        # Convert the dataframe to HTML and remove the index column
-        html_table = df.to_html(index=False, escape=False)
+        # Convert the dataframe to HTML with enhanced styling
+        styled_html_table = (
+            df.style
+            .set_table_styles([
+                {"selector": "thead", "props": [("background-color", "#f2f2f2"), ("color", "black")]}
+            ])
+            .bar(subset=["Recommendation"], color='#7E7E7E')
+            .set_properties(**{'text-align': 'left'})
+            .hide_index()
+            .render()
+        )
 
-        # Display the HTML table using st.markdown
-        st.markdown(html_table, unsafe_allow_html=True)
+        # Display the styled HTML table using st.markdown
+        st.markdown(styled_html_table, unsafe_allow_html=True)
     else:
         st.warning("Please fill in all fields.")
+
