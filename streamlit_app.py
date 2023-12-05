@@ -86,4 +86,4 @@ explanation_text = """
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>“I must have flowers, always, and always.”</i></h2></div>", unsafe_allow_html=True)
 # Center the title
-st.markdown("<div style='text-align: right;'><h2 style='font-size: 1rem;'><i>— Claude Monet</i></h2></div>", unsafe_allow_html=True)
+st.markdown("<div style='text-align: center;'><h2 style='font-size: 1rem;'><i>— Claude Monet —</i></h2></div>", unsafe_allow_html=True)
