@@ -99,8 +99,10 @@ if st.button("Generate Recommendation"):
         # Create a dataframe for better formatting
         df = pd.DataFrame({"Recommendation": lines})
 
-        # Display the dataframe without the index column using st.dataframe
-        st.dataframe(df.style.set_properties(**{'text-align': 'left'}).hide_index(), unsafe_allow_html=True)
+        # Convert the dataframe to HTML and remove the index column
+        html_table = df.to_html(index=False, escape=False)
+
+        # Display the HTML table using st.markdown
+        st.markdown(html_table, unsafe_allow_html=True)
     else:
         st.warning("Please fill in all fields.")
-
