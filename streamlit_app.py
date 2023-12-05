@@ -35,8 +35,8 @@ with st.sidebar:
 
 def generate_flower_recommendation(occasion, recipient_name, favorite_color, relationship):
     # Customize the prompt based on your requirements
-    prompt = f"Recommend me a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}. and write 5 notes for me to tell {recipient_name} why I chose this flower for this {occasion}."
-
+    prompt1 = f"Recommend me a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}."
+    prompt2 = f'write 5 notes for me to tell {recipient_name} who is my {relationship} why I chose {response} for this {occasion}.'
     # Call OpenAI API for recommendation
     response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
@@ -44,8 +44,8 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
         top_p=0.7,
         max_tokens=450,
         messages=[
-            {"role": "system", "content": "You are a flowers recommendation bot. You will help users find the best flowers for their important person."},
-            {"role": "user", "content": f"You will help users find the best flowers and make notes from the context:{prompt}."},
+            {"role": "system", "content": f"You are a flowers recommendation bot. You will help users find the best flowers for their important person from the context{occasion} and {favorite_color}"},
+            {"role": "user", "content": f"You will help users find the best flowers from the context:{prompt1}. and make notes from the context:{prompt2}"},
         ]
     )
     
@@ -64,54 +64,16 @@ favorite_color = st.text_input("Recipient's Favorite Color:")
 relationship = st.text_input("Recipient's Relationship to you:")
 
 # Generate recommendation
-'''if st.button("Generate Recommendation"):
+if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation = generate_flower_recommendation(
             occasion, recipient_name, favorite_color, relationship
         )
         st.success(f"Recommended Flower: {recommendation}")
     else:
-        st.warning("Please fill in all fields.")'''
-
-# Generate recommendation
-if st.button("Generate Recommendation"):
-    if occasion and recipient_name and favorite_color and relationship:
-        recommendation = generate_flower_recommendation(
-            occasion, recipient_name, favorite_color, relationship
-        )
-
-        # Extracting the flower and note from the recommendation
-        flower_start = "Recommended Flower:"
-        note_start = "Notes:"
-        flower_end = recommendation.find(note_start)
-
-        recommended_flower = recommendation[len(flower_start):flower_end].strip()
-        note = recommendation[flower_end + len(note_start):].strip()
-
-        # Create a DataFrame with the recommended flower and note
-        data = {
-            "Recommended Flower": [recommended_flower],
-            "Note": [note],
-        }
-
-        df = pd.DataFrame(data)
-
-        # Style the DataFrame for a beautiful output
-        st.markdown("<h3 style='text-align: left; color: #336699;'>Recommended Flower and Note</h3>", unsafe_allow_html=True)
-        
-        # Set custom CSS styles for the table to make it bigger
-        st.table(df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
-            'selector': 'th',
-            'props': [('text-align', 'left')]
-        }, {
-            'selector': 'td',
-            'props': [('text-align', 'left')]
-        }]))
-
-    else:
         st.warning("Please fill in all fields.")
 
-  
+
 
     
 #explanation_text = """
