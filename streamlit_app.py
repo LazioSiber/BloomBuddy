@@ -30,9 +30,6 @@ with st.sidebar:
         openai.api_key = st.session_state.openai_api_key
         st.success("Your OpenAI API key was saved successfully!")
 
-#user_api_key = st.sidebar.text_input("OpenAI API key", type="password")
-#client = openai.OpenAI(api_key=user_api_key)
-
 def generate_flower_recommendation(occasion, recipient_name, favorite_color, relationship):
     # Customize the prompt based on your requirements
     prompt1 = f"Recommend me a flower that are suitable for {occasion} and {favorite_color} for {recipient_name} who is my {relationship}."
@@ -51,8 +48,6 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
     
     return response.choices[0].message.content
 
-#st.title("🌼Flower For Your Important Person🌼")
-#st.markdown("<p style='text-align: center;'><h2 style = 'font-size: 2rem'>🌼Flower For Your Important Person🌼</h2>",unsafe_allow_html=True)
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 2rem;'>🌼Flower For Your Important Person🌼</h2></div>", unsafe_allow_html=True)
 
@@ -66,23 +61,44 @@ favorite_color = st.text_input("Recipient's Favorite Color:")
 relationship = st.text_input("Recipient's Relationship to you:")
 
 # Generate recommendation
-if st.button("Generate Recommendation"):
+'''if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation = generate_flower_recommendation(
             occasion, recipient_name, favorite_color, relationship
         )
         st.success(f"{recommendation}")
     else:
+        st.warning("Please fill in all fields.")'''
+
+if st.button("Generate Recommendation"):
+    if occasion and recipient_name and favorite_color and relationship:
+        recommendation = generate_flower_recommendation(
+            occasion, recipient_name, favorite_color, relationship
+        )
+
+        # Extracting the flower and note from the recommendation
+        flower_start = "Recommended Flower:"
+        note_start = "Notes:"
+        flower_end = recommendation.find(note_start)
+
+        recommended_flower = recommendation[len(flower_start):flower_end].strip()
+
+        # Create a DataFrame with the recommended flower
+        data = {
+            "Recommended Flower": [recommended_flower],
+        }
+
+        df = pd.DataFrame(data)
+
+        # Display the recommended flower in a DataFrame
+        st.dataframe(df.style.set_properties(**{'text-align': 'left'}).set_table_styles([{
+            'selector': 'th',
+            'props': [('text-align', 'left')]
+        }]))
+
+    else:
         st.warning("Please fill in all fields.")
 
-
-
-#<p style='text-align: center;'><i>import streamlit as st</i></p>"
-explanation_text = """
-<h3 style='text-align: center; color: green;'> 🌟Flower makes our world beautiful🌟 </h3>
-"""
-#st.markdown("<p style='text-align: center;'><h2 style = 'font-size: 1.8rem'><i>“I must have flowers, always, and always.”</i></h2>", unsafe_allow_html=True)
-#st.markdown("<p style='text-align: right;'><h2 style = 'font-size: 1.25rem'><i>— Claude Monet</i></h2>", unsafe_allow_html=True)
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>“I must have flowers, always, and always.”</i></h2></div>", unsafe_allow_html=True)
 # Center the title
