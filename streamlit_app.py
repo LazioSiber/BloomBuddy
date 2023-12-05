@@ -59,19 +59,27 @@ occasion = st.text_input("Occasion:")
 recipient_name = st.text_input("Recipient's Name:")
 favorite_color = st.text_input("Recipient's Favorite Color:")
 relationship = st.text_input("Recipient's Relationship to you:")
-
 '''
-# Generate recommendation
 if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation = generate_flower_recommendation(
             occasion, recipient_name, favorite_color, relationship
         )
-        st.success(f"{recommendation}")
+        
+        # Split the recommendation into lines
+        lines = recommendation.split('\n')
+
+        # Create a dataframe for better formatting
+        df = pd.DataFrame({"Recommendation": lines})
+
+        # Convert the dataframe to HTML and remove the index column
+        html_table = df.to_html(index=False, escape=False)
+
+        # Display the HTML table
+        st.write(html_table, unsafe_allow_html=True)
     else:
         st.warning("Please fill in all fields.")
 '''
-        
 
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>“I must have flowers, always, and always.”</i></h2></div>", unsafe_allow_html=True)
@@ -95,6 +103,23 @@ if st.button("Generate Recommendation"):
 
         # Display the HTML table
         st.write(html_table, unsafe_allow_html=True)
+    else:
+        st.warning("Please fill in all fields.")
+
+if st.button("Generate Recommendation"):
+    if occasion and recipient_name and favorite_color and relationship:
+        recommendation = generate_flower_recommendation(
+            occasion, recipient_name, favorite_color, relationship
+        )
+        
+        # Split the recommendation into lines
+        lines = recommendation.split('\n')
+
+        # Create a dataframe for better formatting
+        df = pd.DataFrame({"Recommendation": lines})
+
+        # Display the dataframe without the index column using st.dataframe
+        st.dataframe(df.style.set_properties(**{'text-align': 'left'}).hide_index(), unsafe_allow_html=True)
     else:
         st.warning("Please fill in all fields.")
 
