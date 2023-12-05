@@ -107,7 +107,6 @@ if st.button("Generate Recommendation"):
             ])
             .bar(subset=["Recommendation"], color='#7E7E7E')
             .set_properties(**{'text-align': 'left'})
-            .render()
         )
 
         # Display the styled HTML table using st.markdown
