@@ -124,6 +124,6 @@ if st.button("Generate Recommendation"):
         # Display the tables
         for index, row in df.iterrows():
             st.markdown(f"<h3>{row['Flower']}</h3>", unsafe_allow_html=True)
-            st.table(pd.DataFrame({'Notes': [row['Notes']]}).set_index('Notes', drop=True))
+            st.write(row['Notes'])
     else:
         st.warning("Please fill in all fields.")
