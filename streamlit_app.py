@@ -60,7 +60,7 @@ recipient_name = st.text_input("Recipient's Name:")
 favorite_color = st.text_input("Recipient's Favorite Color:")
 relationship = st.text_input("Recipient's Relationship to you:")
 
-# Generate recommendation
+'''# Generate recommendation
 if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation = generate_flower_recommendation(
@@ -68,7 +68,7 @@ if st.button("Generate Recommendation"):
         )
         st.success(f"{recommendation}")
     else:
-        st.warning("Please fill in all fields.")
+        st.warning("Please fill in all fields.")'''
         
 
 # Center the title
@@ -76,3 +76,19 @@ st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1rem;'><i>— Claude Monet —</i></h2></div>", unsafe_allow_html=True)
 
+if st.button("Generate Recommendation"):
+    if occasion and recipient_name and favorite_color and relationship:
+        recommendation = generate_flower_recommendation(
+            occasion, recipient_name, favorite_color, relationship
+        )
+        
+        # Split the recommendation into lines
+        lines = recommendation.split('\n')
+
+        # Create a dataframe for better formatting
+        df = pd.DataFrame({"Recommendation": lines})
+
+        # Display the dataframe as a single-column table
+        st.table(df)
+    else:
+        st.warning("Please fill in all fields.")
