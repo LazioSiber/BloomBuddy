@@ -47,30 +47,7 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
             {"role": "user", "content": f"You will help users find 2 flowers and make 3 different notes for each flowers from the context:{prompt}"},
         ]
     )
-    recommendations = response.choices[0].message.content.split("\n")
-    
-    # Create a single-column DataFrame
-    data = {"Recommendation": []}
-    i = 0
-    while i < len(recommendations):
-        try:
-            flower = recommendations[i]
-            note1 = recommendations[i + 1]
-            note2 = recommendations[i + 2]
-            note3 = recommendations[i + 3]
-        except IndexError:
-            # Handle IndexError gracefully
-            break
-        
-        data["Recommendation"].append(flower)
-        data["Recommendation"].append(note1)
-        data["Recommendation"].append(note2)
-        data["Recommendation"].append(note3)
-        data["Recommendation"].append("")  # Add an empty row to separate recommendations
-        i += 4
-
-    df = pd.DataFrame(data)
-    return df
+    return response.choices[0].message.content
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 2rem;'>🌼Flower For Your Important Person🌼</h2></div>", unsafe_allow_html=True)
 
@@ -84,23 +61,15 @@ favorite_color = st.text_input("Recipient's Favorite Color:")
 relationship = st.text_input("Recipient's Relationship to you:")
 
 # Generate recommendation
-'''if st.button("Generate Recommendation"):
+if st.button("Generate Recommendation"):
     if occasion and recipient_name and favorite_color and relationship:
         recommendation = generate_flower_recommendation(
             occasion, recipient_name, favorite_color, relationship
         )
         st.success(f"{recommendation}")
     else:
-        st.warning("Please fill in all fields.")'''
-        
-if st.button("In bocca al lupo!"):
-    if occasion and recipient_name and favorite_color and relationship:
-        recommendation_df = generate_flower_recommendation(
-            occasion, recipient_name, favorite_color, relationship
-        )
-        st.table(recommendation_df)
-    else:
         st.warning("Please fill in all fields.")
+        
 
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 1.5rem;'><i>“I must have flowers, always, and always.”</i></h2></div>", unsafe_allow_html=True)
