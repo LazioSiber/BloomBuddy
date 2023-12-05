@@ -85,6 +85,9 @@ if st.button("Generate Recommendation"):
         # Split the recommendation into lines
         lines = recommendation.split('\n')
 
+        # Print the lines for debugging
+        st.text(lines)
+
         # Create a dataframe for better formatting
         df = pd.DataFrame({"Recommendation": lines})
 
