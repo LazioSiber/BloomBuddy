@@ -47,23 +47,22 @@ def generate_flower_recommendation(occasion, recipient_name, favorite_color, rel
             {"role": "user", "content": f"You will help users find 2 flowers and make 3 different notes for each flowers from the context:{prompt}"},
         ]
     )
-    
-    #return response.choices[0].message.content
     recommendations = response.choices[0].message.content.split("\n")
-    
+    # Create a single-column DataFrame
     data = {"Recommendation": []}
     for i in range(0, len(recommendations), 4):
         flower = recommendations[i]
-        note1 = recommendations[i + 0]
-        note2 = recommendations[i + 1]
-        note3 = recommendations[i + 2]
+        note1 = recommendations[i + 1]
+        note2 = recommendations[i + 2]
+        note3 = recommendations[i + 3]
         
-        recommendation_text = f"Flower: {flower}\nNote 1: {note1}\nNote 2: {note2}\nNote 3: {note3}"
-        data["Recommendation"].append(recommendation_text)
+        data["Recommendation"].append(flower)
+        data["Recommendation"].append(note1)
+        data["Recommendation"].append(note2)
+        data["Recommendation"].append(note3)
     
     df = pd.DataFrame(data)
     return df
-
 # Center the title
 st.markdown("<div style='text-align: center;'><h2 style='font-size: 2rem;'>🌼Flower For Your Important Person🌼</h2></div>", unsafe_allow_html=True)
 
